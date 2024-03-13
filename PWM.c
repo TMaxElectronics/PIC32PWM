@@ -1,6 +1,7 @@
 #include <xc.h>
 #include <stdint.h>
 
+#include "FreeRTOS.h"
 #include "PWM.h"
 
 static uint32_t TxDIVIDERS[] = {1, 2, 4, 8, 16, 32, 64, 256};
@@ -133,7 +134,6 @@ void PWM_setFrequency(uint32_t timer, uint32_t freq){
 	}
     
 	//finally re-enable all the modules that were enabled before
-	uint32_t moduleEnables[PWM_MODULECOUNT] = {[0 ... (PWM_MODULECOUNT - 1)] = 0};
 	for(uint32_t i = 0; i < PWM_MODULECOUNT; i++){
 		if(moduleEnables[i]) PWM_setModuleOn(i + 1, 1);
 	}
