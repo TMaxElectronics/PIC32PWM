@@ -25,7 +25,7 @@ static uint32_t TxDIVIDERS[] = {1, 2, 4, 8, 16, 32, 64, 256};
 static uint32_t PWM_populateSourceRegs(PWM_ClockSource_t * source, uint32_t timerID){
 	switch(timerID){
 		case 2:
-            source->CON = &T2CON;
+            source->CON = (volatile TxCONbits_t *) &T2CON;
             source->CONCLR = &T2CONCLR;
             source->CONSET = &T2CONSET;
             
@@ -36,7 +36,7 @@ static uint32_t PWM_populateSourceRegs(PWM_ClockSource_t * source, uint32_t time
 			break;
 			
 		case 3:
-            source->CON = &T3CON;
+            source->CON = (volatile TxCONbits_t *) &T3CON;
             source->CONCLR = &T3CONCLR;
             source->CONSET = &T3CONSET;
             
@@ -58,7 +58,7 @@ static uint32_t PWM_populateSourceRegs(PWM_ClockSource_t * source, uint32_t time
 static uint32_t PWM_populateModuleRegs(PWM_Handle_t * module, PWM_ClockSource_t * source, uint32_t moduleID){
 	switch(moduleID){
 		case 1:
-            module->CON = &OC1CON;
+            module->CON = (volatile OCxCONbits_t *) &OC1CON;
             module->CONCLR = &OC1CONCLR;
             module->CONSET = &OC1CONSET;
             module->RS = &OC1RS;
@@ -66,7 +66,7 @@ static uint32_t PWM_populateModuleRegs(PWM_Handle_t * module, PWM_ClockSource_t 
 			break;
             
 		case 2:
-            module->CON = &OC2CON;
+            module->CON = (volatile OCxCONbits_t *) &OC2CON;
             module->CONCLR = &OC2CONCLR;
             module->CONSET = &OC2CONSET;
             module->RS = &OC2RS;
@@ -74,7 +74,7 @@ static uint32_t PWM_populateModuleRegs(PWM_Handle_t * module, PWM_ClockSource_t 
 			break;
             
 		case 3:
-            module->CON = &OC3CON;
+            module->CON = (volatile OCxCONbits_t *) &OC3CON;
             module->CONCLR = &OC3CONCLR;
             module->CONSET = &OC3CONSET;
             module->RS = &OC3RS;
@@ -82,7 +82,7 @@ static uint32_t PWM_populateModuleRegs(PWM_Handle_t * module, PWM_ClockSource_t 
 			break;
             
 		case 4:
-            module->CON = &OC4CON;
+            module->CON = (volatile OCxCONbits_t *) &OC4CON;
             module->CONCLR = &OC4CONCLR;
             module->CONSET = &OC4CONSET;
             module->RS = &OC4RS;
@@ -90,7 +90,7 @@ static uint32_t PWM_populateModuleRegs(PWM_Handle_t * module, PWM_ClockSource_t 
 			break;
             
 		case 5:
-            module->CON = &OC1CON;
+            module->CON = (volatile OCxCONbits_t *) &OC1CON;
             module->CONCLR = &OC1CONCLR;
             module->CONSET = &OC1CONSET;
             module->RS = &OC1RS;
