@@ -198,7 +198,7 @@ void PWM_setFrequency(PWM_ClockSource_t * source, uint32_t freq){
     if(source == NULL) return;
     
     //limit max frequency TODO add sensible limits
-    if(freq > 250000 || freq < 15) return;
+    if(freq > 250000 || freq < 1) return;
 	
     //first make sure all outputs running from this timer are off TODO do we actually need this? If so: re-implement
 
